@@ -112,13 +112,13 @@
       position: relative; overflow: hidden;
     }
     .hero::before {
-      content: 'CB';
-      position: absolute; right: -2rem; top: -3rem;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(14rem, 28vw, 26rem); font-weight: 900;
-      color: rgba(255,255,255,.03); line-height: 1;
-      pointer-events: none; user-select: none;
-    }
+     content: '';
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&q=80&w=2000') no-repeat center center;
+  background-size: cover;
+  opacity: 0.1;
+  pointer-events: none; user-select: none;
+}
     .hero-eyebrow {
       font-size: .68rem; font-weight: 600; letter-spacing: .25em;
       text-transform: uppercase; color: var(--red);
