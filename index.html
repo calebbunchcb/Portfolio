@@ -469,6 +469,19 @@
     #resumeModal .btn-close { filter: invert(1) grayscale(1); opacity: .5; margin-top: .15rem; }
     #resumeModal .btn-close:hover { opacity: 1; }
 
+    .resume-side-list {
+      list-style: none; padding: 0; margin: 0;
+    }
+    .resume-side-list li {
+      font-size: .85rem; color: #3d3830;
+      margin-bottom: .5rem; line-height: 1.55;
+      padding-left: .9rem; position: relative;
+    }
+    .resume-side-list li::before {
+      content: ''; position: absolute; left: 0; top: .55rem;
+      width: 4px; height: 4px; background: var(--red); border-radius: 50%;
+    }
+
     @media print {
       .masthead, footer { display: none !important; }
       body { background: white; color: black; }
@@ -550,7 +563,7 @@
           <p class="about-lead">"Ships at a distance have every man's wish on board."</p>
 
           <p class="about-body">
-            Caleb Bunch is a graduate student at Northwestern pursuing a Master's in Journalism. 
+            Caleb Bunch is a graduate student at Northwestern pursuing a Master's in Journalism.
           </p>
           <p class="about-body">
             He has a passion for understanding people and culture through the power of stories. With experience spanning broadcast, digital, and print platforms, Caleb brings a versatile approach to every assignment.
@@ -595,7 +608,7 @@
 
       <div class="row g-4">
 
-        <!-- Card 1 — Link 1: https://youtu.be/MtDVT6CGbxE?si=mN0AYtD0QRB--jjl -->
+        <!-- Card 1 -->
         <div class="col-lg-4 col-md-6">
           <div class="video-card">
             <div class="video-thumb" id="vthumb-1">
@@ -612,12 +625,12 @@
             <div class="video-meta">
               <div class="video-category">Investigative</div>
               <div class="video-title">Community Response to Local Crisis</div>
-              <div class="video-desc">As construction crews prepare for the 2026 FIFA World Cup at Mexico City’s renowned Estadio Azteca, Rosalba Flores climbs to her rooftop to wash clothes by hand. It is another day without running water in the neighborhood closest to the stadium.</div>
+              <div class="video-desc">As construction crews prepare for the 2026 FIFA World Cup at Mexico City's renowned Estadio Azteca, Rosalba Flores climbs to her rooftop to wash clothes by hand. It is another day without running water in the neighborhood closest to the stadium.</div>
             </div>
           </div>
         </div>
 
-        <!-- Card 2 — Link 2: https://youtu.be/MtDVT6CGbxE -->
+        <!-- Card 2 -->
         <div class="col-lg-4 col-md-6">
           <div class="video-card">
             <div class="video-thumb" id="vthumb-2">
@@ -639,7 +652,7 @@
           </div>
         </div>
 
-        <!-- Card 3 — St. Ignatius (Dropbox link — linked out, not embeddable) -->
+        <!-- Card 3 -->
         <div class="col-lg-4 col-md-6">
           <div class="video-card">
             <div class="video-thumb" id="vthumb-3">
@@ -686,8 +699,8 @@
           <div class="resume-title-line">Journalist · Broadcast Reporter · Video Producer</div>
           <div class="resume-contact-row" style="margin-top:.5rem">
             <div class="resume-contact-item"><i class="bi bi-envelope"></i><a href="mailto:calebbunch.cb@gmail.com">calebbunch.cb@gmail.com</a></div>
-            <div class="resume-contact-item"><i class="bi bi-linkedin"></i><a href="https://www.linkedin.com/in/caleb-bunch/">linkedin.com/in/calebbunch</a></div>
-            <div class="resume-contact-item"><i class="bi bi-instagram"></i><a href="https://www.instagram.com/cbtyg/">@cbtyg</a></div>
+            <div class="resume-contact-item"><i class="bi bi-telephone"></i><a href="tel:+18124836115">(812) 483-6115</a></div>
+            <div class="resume-contact-item"><i class="bi bi-linkedin"></i><a href="https://www.linkedin.com/in/caleb-bunch/" target="_blank">linkedin.com/in/caleb-bunch</a></div>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:.75rem;margin-left:auto;padding-left:1rem">
@@ -700,56 +713,166 @@
 
       <div class="modal-body">
         <div class="row g-5">
+
+          <!-- LEFT COLUMN: Experience & Leadership -->
           <div class="col-lg-8">
+
             <div class="resume-block">
               <div class="resume-block-title">Experience</div>
+
               <div class="resume-entry">
                 <div class="resume-entry-header">
-                  <span class="resume-entry-org">Local News Station</span>
-                  <span class="resume-entry-date">2021 – Present</span>
+                  <span class="resume-entry-org">Emory Wheel — Atlanta, GA</span>
+                  <span class="resume-entry-date">Jan 2026 – May 2026</span>
                 </div>
-                <div class="resume-entry-role">Lead Investigative Reporter</div>
+                <div class="resume-entry-role">Contributor</div>
                 <ul>
-                  <li>Directing multi-part investigative series on local housing and policy.</li>
-                  <li>Managing live field reporting during peak broadcast hours.</li>
-                  <li>Coordinating with digital teams to adapt broadcast content for social media platforms.</li>
+                  <li>Conducted research into sports industry outlooks and trends, translating complex data into digestible information for editors.</li>
+                  <li>Edited content using Premiere Pro, focusing on fast-paced stories designed for mass digital distribution.</li>
                 </ul>
               </div>
+
               <div class="resume-entry">
                 <div class="resume-entry-header">
-                  <span class="resume-entry-org">Independent Media Group</span>
-                  <span class="resume-entry-date">2018 – 2021</span>
+                  <span class="resume-entry-org">J.P. Morgan Chase — Chicago, IL</span>
+                  <span class="resume-entry-date">Jun 2024 – Aug 2024</span>
                 </div>
-                <div class="resume-entry-role">Digital Journalist & Editor</div>
+                <div class="resume-entry-role">CADP, Asset & Wealth Management Summer Analyst</div>
                 <ul>
-                  <li>Produced long-form video features reaching audiences of over 500k monthly viewers.</li>
-                  <li>Built an extensive source network across municipal departments.</li>
+                  <li>Conducted geopolitical risk analysis across four global regions, developing a crisis risk assessment that evaluated risk coverage in over 20 countries.</li>
+                  <li>Crafted an automated stakeholder engagement model pulling data from over 100 meetings, committees, and working groups for all project managers.</li>
+                  <li>Designed a website improving stakeholder communication and enhancing transparency across the business resiliency team.</li>
+                </ul>
+              </div>
+
+              <div class="resume-entry">
+                <div class="resume-entry-header">
+                  <span class="resume-entry-org">PwC — Virtual</span>
+                  <span class="resume-entry-date">Feb 2023 – Apr 2023</span>
+                </div>
+                <div class="resume-entry-role">Non-Profit Consulting Extern</div>
+                <ul>
+                  <li>Provided strategic consulting to evaluate fund challenges — enhancing strategic positioning, improving talent engagement by 10%, and implementing process improvements that drove a 100% increase in revenue.</li>
+                  <li>Analyzed potential donor profiles, resulting in a 20% increase in qualified leads aligned with the fund's mission.</li>
+                  <li>Synthesized and presented research findings, helping the fund reach its $3M revenue target.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="resume-block">
+              <div class="resume-block-title">Leadership & Extracurricular</div>
+
+              <div class="resume-entry">
+                <div class="resume-entry-header">
+                  <span class="resume-entry-org">The 303 Network — Chicago, IL</span>
+                  <span class="resume-entry-date">Oct 2025 – Present</span>
+                </div>
+                <div class="resume-entry-role">Co-founder</div>
+                <ul>
+                  <li>Co-founded an independent media platform hosting 8 podcasts and a studio broadcast, accumulating 20k+ views across social media platforms.</li>
+                  <li>Produced audio and video content end-to-end: overseeing story development, recording logistics, editing coordination, and digital distribution.</li>
+                  <li>Produced and edited a World Cup mini-documentary for WTTW, achieving 10K+ views on TikTok, investigating the local neighborhood effects of Mexico City's stadium renovations.</li>
+                </ul>
+              </div>
+
+              <div class="resume-entry">
+                <div class="resume-entry-header">
+                  <span class="resume-entry-org">Emory Varsity Basketball & GA HS Track and Field</span>
+                  <span class="resume-entry-date">Oct 2024 – May 2025</span>
+                </div>
+                <div class="resume-entry-role">Color Commentator — Atlanta, GA</div>
+                <ul>
+                  <li>Researched and prepared content — team statistics, player performance trends, and historical context — to deliver accurate, informative coverage.</li>
+                  <li>Provided analysis and insights for Emory's Varsity Basketball teams, demonstrating quick thinking and adaptability responding to unexpected game events.</li>
+                  <li>Engaged a live audience by highlighting race strategies and meet developments across the state of Georgia, creating an immersive viewing experience through real-time narration.</li>
+                </ul>
+              </div>
+
+              <div class="resume-entry">
+                <div class="resume-entry-header">
+                  <span class="resume-entry-org">Reality Check (Student Web Series)</span>
+                  <span class="resume-entry-date">Jan 2023 – May 2025</span>
+                </div>
+                <div class="resume-entry-role">Consulting Producer — Atlanta, GA</div>
+                <ul>
+                  <li>Advised the development and production of a student web series from initial idea to final execution, resulting in 13k views on YouTube and 25k+ views on TikTok.</li>
+                  <li>Collaborated with directors on shot lists to ensure visual storytelling coherence in alignment with the script.</li>
+                </ul>
+              </div>
+
+              <div class="resume-entry">
+                <div class="resume-entry-header">
+                  <span class="resume-entry-org">Emory Varsity Track and Field</span>
+                  <span class="resume-entry-date">Aug 2021 – May 2025</span>
+                </div>
+                <div class="resume-entry-role">Athlete — Atlanta, GA</div>
+                <ul>
+                  <li>Earned NCAA 2nd Team All-American and Academic All-American honors, demonstrating excellence in both athletics and academics.</li>
+                  <li>Competed with a 4x100 relay team ranking 8th all-time in NCAA Division III history, showcasing teamwork and high-level performance.</li>
                 </ul>
               </div>
             </div>
           </div>
 
+          <!-- RIGHT COLUMN: Education, Honors, Affiliations, Interests -->
           <div class="col-lg-4">
+
             <div class="resume-block">
               <div class="resume-block-title">Education</div>
+
               <div class="resume-entry">
                 <div class="resume-entry-header">
-                  <span class="resume-entry-org">University Name</span>
-                  <span class="resume-entry-date">Class of 2018</span>
+                  <span class="resume-entry-org">Northwestern University</span>
+                  <span class="resume-entry-date">Dec 2026</span>
                 </div>
-                <div class="resume-entry-role">B.A. in Journalism & Communications</div>
+                <div class="resume-entry-role">M.S., Journalism: Video & Broadcast</div>
+                <ul class="resume-side-list">
+                  <li>Medill School of Journalism — Chicago, IL</li>
+                  <li>Cumulative GPA: 4.0</li>
+                </ul>
+              </div>
+
+              <div class="resume-entry">
+                <div class="resume-entry-header">
+                  <span class="resume-entry-org">Emory University</span>
+                  <span class="resume-entry-date">May 2025</span>
+                </div>
+                <div class="resume-entry-role">B.A., Economics</div>
+                <ul class="resume-side-list">
+                  <li>College of Arts and Sciences — Atlanta, GA</li>
+                  <li>Cumulative GPA: 3.78</li>
+                  <li>Omicron Delta Epsilon</li>
+                </ul>
               </div>
             </div>
+
             <div class="resume-block">
-              <div class="resume-block-title">Skills</div>
+              <div class="resume-block-title">Honors & Awards</div>
               <div class="resume-skills">
-                <span class="skill-chip">Broadcast Reporting</span>
-                <span class="skill-chip">Video Editing</span>
-                <span class="skill-chip">Adobe Premiere</span>
-                <span class="skill-chip">Live On-Air Presentation</span>
-                <span class="skill-chip">Investigative Research</span>
+                <span class="skill-chip">NCAA 2nd Team All-American</span>
+                <span class="skill-chip">Academic All-American Nominee</span>
+                <span class="skill-chip">Omicron Delta Epsilon</span>
+                <span class="skill-chip">Omicron Delta Kappa</span>
               </div>
             </div>
+
+            <div class="resume-block">
+              <div class="resume-block-title">Affiliations</div>
+              <ul class="resume-side-list">
+                <li>Emory Table Talk — Events Coordinator</li>
+                <li>Emory Student-Athlete Advisory Committee — Team Rep.</li>
+              </ul>
+            </div>
+
+            <div class="resume-block">
+              <div class="resume-block-title">Interests</div>
+              <div class="resume-skills">
+                <span class="skill-chip">Vinyl Records & CDs</span>
+                <span class="skill-chip">Taekwondo · 3rd Degree Black Belt</span>
+                <span class="skill-chip">Duke Basketball</span>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
