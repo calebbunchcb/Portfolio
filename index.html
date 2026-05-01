@@ -1,0 +1,868 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Caleb Bunch — Journalist</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --ink:    #0f0e0d;
+      --paper:  #f5f0e8;
+      --cream:  #faf7f2;
+      --red:    #c0392b;
+      --red-dk: #96231a;
+      --gold:   #b8962e;
+      --muted:  #6b6560;
+      --rule:   #d4cfc8;
+      --nav-h:  68px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Libre Franklin', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .serif       { font-family: 'Playfair Display', Georgia, serif; }
+    .text-red    { color: var(--red) !important; }
+    .text-muted2 { color: var(--muted) !important; }
+    .bg-ink      { background: var(--ink); }
+    .rule        { border-top: 1px solid var(--rule); }
+    .rule-bold   { border-top: 3px solid var(--ink); }
+    .rule-red    { border-top: 2px solid var(--red); }
+
+    .page-section { display: none; animation: fadeUp .45s ease both; }
+    .page-section.active { display: block; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .masthead {
+      position: sticky; top: 0; z-index: 1000;
+      background: var(--ink);
+      border-bottom: 3px solid var(--red);
+    }
+    .masthead-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: var(--nav-h); padding: 0 2rem;
+    }
+    .masthead-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem; font-weight: 900;
+      color: var(--paper); text-decoration: none;
+      letter-spacing: -.01em; line-height: 1;
+    }
+    .masthead-logo span { color: var(--red); }
+    .masthead-logo small {
+      display: block; font-family: 'Libre Franklin', sans-serif;
+      font-size: .6rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: #9e9890; margin-top: 2px;
+    }
+
+    .nav-links { display: flex; gap: .25rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: .72rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: #9e9890;
+      padding: .45rem .85rem; border-radius: 2px;
+      text-decoration: none; transition: color .2s, background .2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--paper); background: rgba(255,255,255,.07); }
+    .nav-links a.active { color: var(--red); }
+
+    .nav-toggle {
+      display: none; background: none; border: none;
+      color: var(--paper); font-size: 1.4rem; cursor: pointer;
+    }
+    .mobile-menu {
+      display: none; flex-direction: column; background: var(--ink);
+      padding: .75rem 1.5rem 1rem; border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: .78rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: #9e9890;
+      padding: .55rem 0; border-bottom: 1px solid rgba(255,255,255,.06);
+      text-decoration: none; transition: color .2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--paper); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+    }
+
+    .hero {
+      background: var(--ink);
+      padding: 6rem 0 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: 'CB';
+      position: absolute; right: -2rem; top: -3rem;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(14rem, 28vw, 26rem); font-weight: 900;
+      color: rgba(255,255,255,.03); line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .hero-eyebrow {
+      font-size: .68rem; font-weight: 600; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 6rem); font-weight: 900;
+      color: var(--paper); line-height: .95;
+      margin-bottom: 1.2rem;
+    }
+    .hero-tagline {
+      font-size: 1.05rem; font-weight: 300;
+      color: #9e9890; max-width: 480px; line-height: 1.65;
+      margin-bottom: 2.5rem;
+    }
+    .hero-divider {
+      width: 60px; height: 3px; background: var(--red);
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--red); color: var(--paper);
+      font-size: .72rem; font-weight: 600; letter-spacing: .15em;
+      text-transform: uppercase; text-decoration: none;
+      padding: .75rem 1.75rem; border-radius: 2px;
+      transition: background .2s, transform .15s;
+      margin-right: .75rem; margin-bottom: .5rem;
+    }
+    .hero-cta:hover { background: var(--red-dk); transform: translateY(-2px); color: var(--paper); }
+    .hero-cta.outline {
+      background: transparent; border: 1px solid rgba(255,255,255,.25); color: #c8c0b8;
+    }
+    .hero-cta.outline:hover { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.06); color: var(--paper); }
+
+    .hero-scroll {
+      margin-top: 4rem; display: flex; align-items: center; gap: .65rem;
+      font-size: .62rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: #5a5550;
+    }
+    .hero-scroll-line { flex: 0 0 36px; height: 1px; background: #3a3530; }
+
+    .section-wrap { padding: 5rem 0; }
+    .section-label {
+      font-size: .62rem; font-weight: 600; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: .65rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 900;
+      line-height: 1.05; color: var(--ink);
+    }
+    .section-title-light { color: var(--paper); }
+
+    .about-photo-wrap { position: relative; }
+    .about-photo-placeholder {
+      width: 100%; aspect-ratio: 3/4; max-height: 480px;
+      background: var(--ink);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: var(--muted); font-size: .78rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      border-radius: 2px;
+    }
+    .about-photo-placeholder i { font-size: 3rem; margin-bottom: .5rem; color: #3a3530; }
+    .about-photo-accent {
+      position: absolute; bottom: -14px; right: -14px;
+      width: 120px; height: 120px;
+      border: 3px solid var(--red);
+      border-radius: 2px; z-index: -1;
+    }
+    .about-lead {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-style: italic;
+      color: var(--ink); line-height: 1.55; margin-bottom: 1.5rem;
+    }
+    .about-body { color: #3d3830; line-height: 1.8; margin-bottom: 1.5rem; }
+    .about-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.75rem; }
+    .tag {
+      font-size: .65rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted);
+      border: 1px solid var(--rule); padding: .3rem .75rem; border-radius: 999px;
+    }
+
+    .social-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .social-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .7rem; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--ink); border: 1.5px solid var(--rule);
+      padding: .45rem 1rem; border-radius: 2px;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .social-btn:hover {
+      border-color: var(--red); color: var(--red);
+      background: rgba(192,57,43,.04);
+    }
+    .social-btn i { font-size: .85rem; }
+
+    .video-section { background: var(--ink); padding: 5rem 0; }
+
+    .video-card {
+      background: #1a1714;
+      border-radius: 2px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,.06);
+      transition: transform .25s, border-color .25s;
+      cursor: pointer; height: 100%;
+    }
+    .video-card:hover { transform: translateY(-4px); border-color: rgba(192,57,43,.5); }
+
+    .video-thumb {
+      position: relative; aspect-ratio: 16/9;
+      background: #2a2520;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .video-thumb iframe { width: 100%; height: 100%; border: none; display: none; }
+    .video-overlay {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #1a1714 60%, #2a2018);
+      transition: background .3s;
+    }
+    .video-card:hover .video-overlay { background: rgba(10,8,6,.7); }
+    .play-btn {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--red); display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.3rem; margin-bottom: 1rem;
+      transition: transform .2s, background .2s;
+      box-shadow: 0 4px 24px rgba(192,57,43,.4);
+    }
+    .video-card:hover .play-btn { transform: scale(1.1); background: var(--red-dk); }
+    .video-label {
+      font-size: .6rem; font-weight: 600; letter-spacing: .18em;
+      text-transform: uppercase; color: rgba(255,255,255,.35);
+    }
+
+    .video-thumb.playing .video-overlay { display: none; }
+    .video-thumb.playing iframe { display: block; }
+
+    .video-meta { padding: 1.1rem 1.25rem 1.35rem; }
+    .video-category {
+      font-size: .6rem; font-weight: 600; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--red); margin-bottom: .35rem;
+    }
+    .video-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700; color: var(--paper);
+      line-height: 1.3; margin-bottom: .4rem;
+    }
+    .video-desc { font-size: .78rem; color: #7a7268; line-height: 1.55; }
+
+    .video-add-note {
+      margin-top: 2.5rem; padding: 1.5rem 2rem;
+      border: 1px dashed rgba(255,255,255,.1); border-radius: 2px;
+      color: #5a5550; font-size: .82rem; line-height: 1.6;
+    }
+    .video-add-note strong { color: #9e9890; }
+
+    .the303-link {
+      display: inline-flex; align-items: center; gap: .5rem;
+      margin-top: 1rem;
+      color: var(--red);
+      font-size: .82rem; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; text-decoration: none;
+      transition: color .2s;
+    }
+    .the303-link:hover { color: #e74c3c; }
+    .the303-link i { font-size: 1.1rem; }
+
+    .resume-section { background: var(--cream); }
+
+    .resume-header-bar {
+      background: var(--ink); color: var(--paper);
+      padding: 2.5rem 3rem; border-radius: 2px; margin-bottom: 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .resume-header-bar::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 3px; background: var(--red);
+    }
+    .resume-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 900; line-height: 1;
+    }
+    .resume-title-line {
+      font-size: .72rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--red); margin: .5rem 0 1rem;
+    }
+    .resume-contact-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .resume-contact-item {
+      display: flex; align-items: center; gap: .45rem;
+      font-size: .78rem; color: #9e9890;
+    }
+    .resume-contact-item a { color: #9e9890; text-decoration: none; }
+    .resume-contact-item a:hover { color: var(--paper); }
+
+    .resume-block { margin-bottom: 2.25rem; }
+    .resume-block-title {
+      font-family: 'Playfair Display', serif;
+      font-size: .72rem; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--red);
+      border-bottom: 2px solid var(--red); padding-bottom: .4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .resume-entry { margin-bottom: 1.35rem; }
+    .resume-entry-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      flex-wrap: wrap; gap: .25rem; margin-bottom: .2rem;
+    }
+    .resume-entry-org { font-weight: 600; font-size: .92rem; color: var(--ink); }
+    .resume-entry-date {
+      font-size: .7rem; font-weight: 600; letter-spacing: .08em;
+      color: var(--muted); white-space: nowrap;
+    }
+    .resume-entry-role { font-size: .8rem; font-style: italic; color: var(--muted); margin-bottom: .4rem; }
+    .resume-entry ul { padding-left: 1.1rem; }
+    .resume-entry ul li { font-size: .85rem; color: #3d3830; margin-bottom: .2rem; line-height: 1.55; }
+
+    .resume-skills { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .skill-chip {
+      font-size: .7rem; font-weight: 600; letter-spacing: .08em;
+      padding: .3rem .8rem; border-radius: 2px;
+      background: #eae5dc; color: var(--ink);
+    }
+
+    .resume-download-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--red); color: var(--paper);
+      font-size: .72rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; text-decoration: none;
+      padding: .75rem 1.75rem; border-radius: 2px;
+      transition: background .2s; border: none; cursor: pointer;
+    }
+    .resume-download-btn:hover { background: var(--red-dk); color: var(--paper); }
+
+    .contact-section { background: var(--ink); padding: 5rem 0; }
+
+    .contact-intro {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-style: italic;
+      color: var(--paper); line-height: 1.35; margin-bottom: 2rem;
+    }
+    .contact-body { color: #9e9890; font-size: .9rem; line-height: 1.7; }
+
+    .contact-detail {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1.35rem;
+    }
+    .contact-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: rgba(192,57,43,.15); border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--red); font-size: 1rem;
+    }
+    .contact-detail-label {
+      font-size: .6rem; font-weight: 600; letter-spacing: .16em;
+      text-transform: uppercase; color: #5a5550; margin-bottom: .2rem;
+    }
+    .contact-detail-value { color: var(--paper); font-size: .9rem; }
+    .contact-detail-value a { color: var(--paper); text-decoration: none; }
+    .contact-detail-value a:hover { color: var(--red); }
+
+    .form-label {
+      font-size: .62rem; font-weight: 600; letter-spacing: .16em;
+      text-transform: uppercase; color: #7a7268; margin-bottom: .4rem;
+    }
+    .form-control {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 2px; color: var(--paper); padding: .75rem 1rem;
+      font-family: 'Libre Franklin', sans-serif; font-size: .88rem;
+      transition: border-color .2s, background .2s;
+    }
+    .form-control::placeholder { color: #4a4540; }
+    .form-control:focus {
+      background: rgba(255,255,255,.06); border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(192,57,43,.15); color: var(--paper);
+      outline: none;
+    }
+    textarea.form-control { resize: vertical; min-height: 130px; }
+    .form-submit {
+      width: 100%; background: var(--red); color: var(--paper); border: none;
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: .72rem; font-weight: 600; letter-spacing: .15em;
+      text-transform: uppercase; padding: .85rem;
+      border-radius: 2px; cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .form-submit:hover { background: var(--red-dk); transform: translateY(-1px); }
+    .form-success {
+      display: none; background: rgba(192,57,43,.1); border: 1px solid var(--red);
+      color: var(--paper); padding: 1rem 1.25rem; border-radius: 2px;
+      font-size: .85rem; margin-top: 1rem; text-align: center;
+    }
+    .form-success.visible { display: block; }
+
+    footer {
+      background: #0a0908;
+      border-top: 3px solid var(--red);
+      padding: 2.5rem 0;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 900; color: var(--paper);
+    }
+    .footer-logo span { color: var(--red); }
+    .footer-copy { font-size: .7rem; color: #5a5550; }
+    .footer-social { display: flex; gap: .5rem; }
+    .footer-social a {
+      width: 34px; height: 34px; border-radius: 2px;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+      display: flex; align-items: center; justify-content: center;
+      color: #7a7268; font-size: .9rem; text-decoration: none;
+      transition: color .2s, background .2s, border-color .2s;
+    }
+    .footer-social a:hover { color: var(--red); border-color: rgba(192,57,43,.4); background: rgba(192,57,43,.07); }
+
+    @media (max-width: 576px) {
+      .section-wrap { padding: 3.5rem 0; }
+      .hero { padding: 4rem 0 3.5rem; }
+      .resume-header-bar { padding: 1.75rem 1.5rem; }
+      .about-photo-accent { display: none; }
+    }
+
+    #resumeModal .modal-dialog { max-width: 860px; }
+    #resumeModal .modal-content {
+      background: var(--cream); border: none;
+      border-radius: 3px; overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,.35);
+    }
+    #resumeModal .modal-header {
+      background: var(--ink); border-bottom: 3px solid var(--red);
+      padding: 1.5rem 2rem; align-items: flex-start;
+    }
+    #resumeModal .modal-body {
+      padding: 2.25rem 2rem; max-height: 78vh; overflow-y: auto;
+    }
+    #resumeModal .modal-body::-webkit-scrollbar { width: 5px; }
+    #resumeModal .modal-body::-webkit-scrollbar-track { background: #e8e3da; }
+    #resumeModal .modal-body::-webkit-scrollbar-thumb { background: var(--red); border-radius: 99px; }
+    #resumeModal .btn-close { filter: invert(1) grayscale(1); opacity: .5; margin-top: .15rem; }
+    #resumeModal .btn-close:hover { opacity: 1; }
+
+    @media print {
+      .masthead, footer { display: none !important; }
+      body { background: white; color: black; }
+      .modal { position: static !important; }
+      .modal-dialog { max-width: 100% !important; margin: 0 !important; }
+      .modal-content { box-shadow: none !important; }
+      .modal-header, .resume-download-btn, .btn-close { display: none !important; }
+    }
+
+    .profile-img {
+      width: 100%; max-width: 300px; height: auto;
+      display: block; margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a href="#" class="masthead-logo" onclick="showSection('home')">
+      Caleb Bunch<span>.</span>
+      <small>Journalist</small>
+    </a>
+    <nav>
+      <ul class="nav-links" id="desktopNav">
+        <li><a href="#" class="active" data-section="home"   onclick="showSection('home');   return false;">About</a></li>
+        <li><a href="#" data-section="videos"  onclick="showSection('videos');  return false;">Work</a></li>
+        <li><a href="#" data-bs-toggle="modal" data-bs-target="#resumeModal">Résumé</a></li>
+        <li><a href="#" data-section="contact" onclick="showSection('contact'); return false;">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="showSection('home');   closeMobile(); return false;">About</a>
+    <a href="#" onclick="showSection('videos'); closeMobile(); return false;">Work</a>
+    <a href="#" data-bs-toggle="modal" data-bs-target="#resumeModal" onclick="closeMobile()">Résumé</a>
+    <a href="#" onclick="showSection('contact');closeMobile(); return false;">Contact</a>
+  </div>
+</header>
+
+
+<section id="section-home" class="page-section active">
+
+  <div class="hero">
+    <div class="container">
+      <p class="hero-eyebrow">Journalist &amp; Storyteller</p>
+      <h1 class="hero-name">Caleb<br>Bunch</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">
+        Every story matters — from breaking news to short-form documentary work.
+      </p>
+      <a href="#" class="hero-cta" onclick="showSection('videos'); return false;">View My Work</a>
+      <a href="#" class="hero-cta outline" onclick="showSection('contact'); return false;">Get in Touch</a>
+      <div class="hero-scroll">
+        <span class="hero-scroll-line"></span>
+        Scroll to explore
+      </div>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+
+        <div class="col-lg-4 col-md-5">
+          <div class="about-photo-wrap">
+            <img src="https://lh3.googleusercontent.com/pw/AP1GczN_vL634Uhl7rNvRXJfR2CW8d5nvlEl93t3x9ulFRZuWgLoF-npvjP_iOnjmlgv2pFFSYhBG4u9axcFnblgJGzl-Ozf1BhPrtuI5v9DN-arTvQ_qAYWikF_xZmDSZOdN51n8ma5barl1tKJqzqtkj35=w1038-h1556-s-no-gm?authuser=0" alt="Caleb Bunch" class="profile-img">
+            <div class="about-photo-accent"></div>
+          </div>
+        </div>
+
+        <div class="col-lg-8 col-md-7">
+          <p class="section-label">About</p>
+          <h2 class="section-title mb-4">The Story Behind<br>the Stories</h2>
+
+          <p class="about-lead">"Ships at a distance have every man's wish on board."</p>
+
+          <p class="about-body">
+            Caleb Bunch is a graduate student at Northwestern pursuing a Master's in Journalism. 
+          </p>
+          <p class="about-body">
+            He has a passion for understanding people and culture through the power of stories. With experience spanning broadcast, digital, and print platforms, Caleb brings a versatile approach to every assignment.
+          </p>
+
+          <div class="about-tags">
+            <span class="tag">Broadcast</span>
+            <span class="tag">Documentary</span>
+            <span class="tag">Feature Writing</span>
+            <span class="tag">Video Production</span>
+          </div>
+
+          <hr class="rule mb-4">
+          <p class="section-label mb-2">Find me on</p>
+          <div class="social-row">
+            <a href="https://www.linkedin.com/in/caleb-bunch/" target="_blank" class="social-btn">
+              <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://www.instagram.com/cbtyg/" target="_blank" class="social-btn">
+              <i class="bi bi-instagram"></i> Instagram
+            </a>
+            <a href="https://www.youtube.com/@The303SportsNetwork" target="_blank" class="social-btn">
+              <i class="bi bi-youtube"></i> YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── WORK / VIDEOS SECTION ─────────────────────────────────── -->
+<section id="section-videos" class="page-section">
+  <div class="video-section">
+    <div class="container">
+      <p class="section-label" style="color:#c0392b">Selected Work</p>
+      <h2 class="section-title section-title-light mb-2">Videos</h2>
+      <p style="color:#6b6560;font-size:.88rem;margin-bottom:3rem;max-width:520px">
+        Check out some of my work below.
+      </p>
+
+      <div class="row g-4">
+
+        <!-- Card 1 — Link 1: https://youtu.be/MtDVT6CGbxE?si=mN0AYtD0QRB--jjl -->
+        <div class="col-lg-4 col-md-6">
+          <div class="video-card">
+            <div class="video-thumb" id="vthumb-1">
+              <iframe id="vframe-1"
+                src=""
+                data-src="https://www.youtube.com/embed/MtDVT6CGbxE?autoplay=1"
+                allowfullscreen
+                allow="autoplay; encrypted-media"></iframe>
+              <div class="video-overlay" onclick="playVideo('vthumb-1','vframe-1')">
+                <div class="play-btn"><i class="bi bi-play-fill"></i></div>
+                <span class="video-label">Play Video</span>
+              </div>
+            </div>
+            <div class="video-meta">
+              <div class="video-category">Investigative</div>
+              <div class="video-title">Community Response to Local Crisis</div>
+              <div class="video-desc">As construction crews prepare for the 2026 FIFA World Cup at Mexico City’s renowned Estadio Azteca, Rosalba Flores climbs to her rooftop to wash clothes by hand. It is another day without running water in the neighborhood closest to the stadium.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 — Link 2: https://youtu.be/MtDVT6CGbxE -->
+        <div class="col-lg-4 col-md-6">
+          <div class="video-card">
+            <div class="video-thumb" id="vthumb-2">
+              <iframe id="vframe-2"
+                src=""
+                data-src="https://www.youtube.com/embed/EuOW0KRiAfU"
+                allowfullscreen
+                allow="autoplay; encrypted-media"></iframe>
+              <div class="video-overlay" onclick="playVideo('vthumb-2','vframe-2')">
+                <div class="play-btn"><i class="bi bi-play-fill"></i></div>
+                <span class="video-label">Play Video</span>
+              </div>
+            </div>
+            <div class="video-meta">
+              <div class="video-category">Feature</div>
+              <div class="video-title">Coach Monroe & St. Ignatius Men's Basketball</div>
+              <div class="video-desc">Exploring how the character and culture of this team has guided them to be one of the best teams in the state.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 — St. Ignatius (Dropbox link — linked out, not embeddable) -->
+        <div class="col-lg-4 col-md-6">
+          <div class="video-card">
+            <div class="video-thumb" id="vthumb-3">
+              <iframe id="vframe-3"
+                src=""
+                data-src="https://www.youtube.com/embed/jHvidpF-Whs"
+                allowfullscreen
+                allow="autoplay; encrypted-media"></iframe>
+              <div class="video-overlay" onclick="playVideo('vthumb-3','vframe-3')">
+                <div class="play-btn"><i class="bi bi-play-fill"></i></div>
+                <span class="video-label">Play Video</span>
+              </div>
+            </div>
+            <div class="video-meta">
+              <div class="video-category">Feature</div>
+              <div class="video-title">150 years and Counting</div>
+              <div class="video-desc">As one of the most historic franchises, The Chicago Cubs are celebrating the season opener to their 150th.</div>
+            </div>
+          </div>
+        </div>
+
+
+      <div class="video-add-note">
+        <strong>📌 The 303 is a media company I co-founded in October, 2025. On this network, I have a podcast entitled "303 Hoops". Along with this, I manage the content of 29 creators' podcasts, articles, and broadcast. Check out videos at the page below!</strong>
+        <br>
+        <a href="https://www.youtube.com/@The303SportsNetwork" target="_blank" class="the303-link">
+          <i class="bi bi-youtube"></i> @The303SportsNetwork on YouTube
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ── RESUME MODAL ──────────────────────────────────────────── -->
+<div class="modal fade" id="resumeModal" tabindex="-1" aria-labelledby="resumeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <div>
+          <div class="resume-name" style="color:var(--paper)">Caleb Bunch</div>
+          <div class="resume-title-line">Journalist · Broadcast Reporter · Video Producer</div>
+          <div class="resume-contact-row" style="margin-top:.5rem">
+            <div class="resume-contact-item"><i class="bi bi-envelope"></i><a href="mailto:calebbunch.cb@gmail.com">calebbunch.cb@gmail.com</a></div>
+            <div class="resume-contact-item"><i class="bi bi-linkedin"></i><a href="https://www.linkedin.com/in/caleb-bunch/">linkedin.com/in/calebbunch</a></div>
+            <div class="resume-contact-item"><i class="bi bi-instagram"></i><a href="https://www.instagram.com/cbtyg/">@cbtyg</a></div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;margin-left:auto;padding-left:1rem">
+          <button class="resume-download-btn" onclick="window.print()" style="white-space:nowrap">
+            <i class="bi bi-download"></i> Download PDF
+          </button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="row g-5">
+          <div class="col-lg-8">
+            <div class="resume-block">
+              <div class="resume-block-title">Experience</div>
+              <div class="resume-entry">
+                <div class="resume-entry-header">
+                  <span class="resume-entry-org">Local News Station</span>
+                  <span class="resume-entry-date">2021 – Present</span>
+                </div>
+                <div class="resume-entry-role">Lead Investigative Reporter</div>
+                <ul>
+                  <li>Directing multi-part investigative series on local housing and policy.</li>
+                  <li>Managing live field reporting during peak broadcast hours.</li>
+                  <li>Coordinating with digital teams to adapt broadcast content for social media platforms.</li>
+                </ul>
+              </div>
+              <div class="resume-entry">
+                <div class="resume-entry-header">
+                  <span class="resume-entry-org">Independent Media Group</span>
+                  <span class="resume-entry-date">2018 – 2021</span>
+                </div>
+                <div class="resume-entry-role">Digital Journalist & Editor</div>
+                <ul>
+                  <li>Produced long-form video features reaching audiences of over 500k monthly viewers.</li>
+                  <li>Built an extensive source network across municipal departments.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="resume-block">
+              <div class="resume-block-title">Education</div>
+              <div class="resume-entry">
+                <div class="resume-entry-header">
+                  <span class="resume-entry-org">University Name</span>
+                  <span class="resume-entry-date">Class of 2018</span>
+                </div>
+                <div class="resume-entry-role">B.A. in Journalism & Communications</div>
+              </div>
+            </div>
+            <div class="resume-block">
+              <div class="resume-block-title">Skills</div>
+              <div class="resume-skills">
+                <span class="skill-chip">Broadcast Reporting</span>
+                <span class="skill-chip">Video Editing</span>
+                <span class="skill-chip">Adobe Premiere</span>
+                <span class="skill-chip">Live On-Air Presentation</span>
+                <span class="skill-chip">Investigative Research</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── CONTACT SECTION ───────────────────────────────────────── -->
+<section id="section-contact" class="page-section">
+  <div class="contact-section">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5">
+          <p class="section-label">Contact</p>
+          <h2 class="section-title section-title-light mb-3">Let's Work Together</h2>
+          <p class="contact-body mb-4">Reach out for collaborations, story tips, or professional inquiries.</p>
+          <div class="contact-detail">
+            <div class="contact-icon"><i class="bi bi-envelope"></i></div>
+            <div class="contact-detail-value"><a href="mailto:calebbunch.cb@gmail.com">calebbunch.cb@gmail.com</a></div>
+          </div>
+          <p class="section-label mb-2">Follow Along</p>
+          <div class="social-row">
+            <a href="https://www.linkedin.com/in/caleb-bunch/" target="_blank" class="social-btn" style="border-color:rgba(255,255,255,.1);color:#9e9890">
+              <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://www.instagram.com/cbtyg/" target="_blank" class="social-btn" style="border-color:rgba(255,255,255,.1);color:#9e9890">
+              <i class="bi bi-instagram"></i> Instagram
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div id="contactForm">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" id="cf-name">
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" id="cf-email">
+              </div>
+              <div class="col-12">
+                <label class="form-label">Message</label>
+                <textarea class="form-control" rows="5" id="cf-message"></textarea>
+              </div>
+              <div class="col-12">
+                <button class="form-submit" onclick="submitForm()">Send Message</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-success" id="formSuccess">
+            <i class="bi bi-check-circle me-2"></i> Message Sent Successfully!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Caleb Bunch<span>.</span></div>
+        <div class="footer-copy">© <span id="footerYear"></span> Caleb Bunch. All rights reserved.</div>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/caleb-bunch/" target="_blank"><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.instagram.com/cbtyg/" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.youtube.com/@The303SportsNetwork" target="_blank"><i class="bi bi-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+    document.getElementById('section-' + id).classList.add('active');
+    document.querySelectorAll('[data-section]').forEach(a => {
+      a.classList.toggle('active', a.dataset.section === id);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+
+  function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  function playVideo(thumbId, frameId) {
+    const thumb = document.getElementById(thumbId);
+    const frame = document.getElementById(frameId);
+    frame.src = frame.dataset.src;
+    thumb.classList.add('playing');
+  }
+
+  function submitForm() {
+    const name = document.getElementById('cf-name').value.trim();
+    if (!name) return alert('Please enter your name.');
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('visible');
+  }
+
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
